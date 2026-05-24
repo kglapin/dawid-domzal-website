@@ -1,0 +1,10 @@
+[dependencies]
+"sharrattj/static-web-server" = "1"
+
+[fs]
+"/public" = "dist"
+
+[[command]]
+name = "script"
+module = "sharrattj/static-web-server:webserver"
+runner = "https://webc.org/runner/wasi"

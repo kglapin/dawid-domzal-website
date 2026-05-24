@@ -38,7 +38,14 @@
       "Bash(cwebp -q 70 -mt /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website/public/domzal-img2.jpg -o /tmp/img2-q70.webp)",
       "Bash(cwebp -q 70 -mt /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website/public/domzal-img2.jpg -o /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website/public/domzal-img2.webp)",
       "Bash(git init *)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(gh repo *)",
+      "Bash(wasmer --version)",
+      "Bash(wasmer whoami *)",
+      "Bash(wasmer app *)",
+      "Bash(wasmer deploy *)",
+      "Bash(git push *)"
     ]
   },
   "enableAllProjectMcpServers": true,
