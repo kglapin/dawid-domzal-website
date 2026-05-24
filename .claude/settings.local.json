@@ -1,0 +1,48 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create *)",
+      "Bash(rm *)",
+      "Bash(cp -r /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website-tmp/* /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website/)",
+      "Bash(cp /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website-tmp/.* /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website/)",
+      "Bash(rm -rf /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website-tmp)",
+      "Bash(npm install *)",
+      "Bash(npx astro *)",
+      "Bash(npm run *)",
+      "Bash(file /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website/src/assets/images/*.jpg)",
+      "mcp__zai-mcp-server__analyze_image",
+      "mcp__tavily-search__tavily_crawl",
+      "Bash(wait)",
+      "mcp__web-reader__webReader",
+      "mcp__web-search-prime__web_search_prime",
+      "Bash(cp /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website/src/assets/images/theodolite.jpg /tmp/check-theodolite-fresh.jpg)",
+      "Bash(cp /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website/src/assets/images/surveying-hero.jpg /tmp/check-hero-fresh.jpg)",
+      "Bash(file *)",
+      "Bash(cp /tmp/pexels_test.jpg src/assets/images/surveying-hero.jpg)",
+      "Bash(cp /tmp/geo_surveyor.jpg src/assets/images/surveying-field.jpg)",
+      "Bash(cp /tmp/geo_worker.jpg src/assets/images/theodolite.jpg)",
+      "WebSearch",
+      "Bash(xxd)",
+      "Bash(xargs -I {} sh -c 'echo \"=== $\\(basename {}\\) ===\"; wc -c < \"{}\"')",
+      "Bash(xargs -I {} sh -c 'echo \"=== $\\(basename {}\\) ===\"; head -50 \"{}\"')",
+      "Bash(grep -E \"\\\\.\\(png|jpg|jpeg|gif|svg|webp|avif\\)$\")",
+      "Bash(cwebp -q 82 -mt /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website/public/domzal-hero.jpg -o /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website/public/domzal-hero.webp)",
+      "Bash(cwebp -q 82 -mt /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website/public/domzal-img2.jpg -o /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website/public/domzal-img2.webp)",
+      "Bash(cwebp -q 82 -mt /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website/public/domzal-img3.jpg -o /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website/public/domzal-img3.webp)",
+      "Bash(cwebp -q 82 -mt /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website/public/services-bg.png -o /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website/public/services-bg.webp)",
+      "Bash(cwebp -q 75 -mt /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website/public/domzal-img2.jpg -o /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website/public/domzal-img2.webp)",
+      "Bash(cwebp -q 75 -mt /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website/public/domzal-img3.jpg -o /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website/public/domzal-img3.webp)",
+      "Bash(cwebp -q 78 -mt /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website/public/domzal-hero.jpg -o /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website/public/domzal-hero.webp)",
+      "Bash(cwebp -near_lossless 60 -mt /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website/public/domzal-img2.jpg -o /tmp/img2-nl.webp)",
+      "Read(//tmp/**)",
+      "Bash(cwebp -q 70 -mt /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website/public/domzal-img2.jpg -o /tmp/img2-q70.webp)",
+      "Bash(cwebp -q 70 -mt /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website/public/domzal-img2.jpg -o /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website/public/domzal-img2.webp)",
+      "Bash(git init *)",
+      "Bash(git add *)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "tavily-search"
+  ]
+}

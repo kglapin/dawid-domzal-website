@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="pl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Usługi Geodezyjne Dawid Domżał - Geodeta Kalisz</title>
+  <meta name="description" content="Usługi geodezyjne w Kaliszu i okolicach: mapy do celów projektowych, tyczenia budynków, podziały działek, inwentaryzacje powykonawcze i obsługa inwestycji." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config={theme:{extend:{colors:{geo:{50:'#f2f7f4',100:'#dfece4',600:'#35644d',700:'#284d3c',800:'#203d30',900:'#193127'},limebrand:'#b9e86e',ink:'#121413'},boxShadow:{soft:'0 24px 70px rgba(18,20,19,.08)',card:'0 18px 50px rgba(18,20,19,.06)'}}}}
+  </script>
+  <style>
+    :root{--scroll-progress:0;--quick-progress:0;--hero-y:0;--topo-shift:0}
+    .scroll-progress{position:fixed;inset:0 0 auto 0;z-index:100;height:3px;background:#b9e86e;transform:scaleX(var(--scroll-progress));transform-origin:left center;box-shadow:0 0 24px rgba(185,232,110,.55)}
+    .reveal,.stagger-reveal>*{opacity:0;transform:translateY(26px);filter:blur(8px);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1),filter .75s cubic-bezier(.22,1,.36,1)}
+    .reveal.is-visible,.stagger-reveal.is-visible>*{opacity:1;transform:translateY(0);filter:blur(0)}
+    .stagger-reveal.is-visible>*:nth-child(2){transition-delay:.08s}.stagger-reveal.is-visible>*:nth-child(3){transition-delay:.16s}.stagger-reveal.is-visible>*:nth-child(4){transition-delay:.24s}.stagger-reveal.is-visible>*:nth-child(5){transition-delay:.32s}
+    .hero-media{isolation:isolate;overflow:hidden}.hero-media img{transform:scale(1.06) translateY(calc(var(--hero-y)*-34px));transition:transform .16s linear;will-change:transform}.hero-media:before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.34;background-image:linear-gradient(rgba(185,232,110,.28) 1px,transparent 1px),linear-gradient(90deg,rgba(185,232,110,.28) 1px,transparent 1px),radial-gradient(circle at 28% 38%,rgba(185,232,110,.9) 0 3px,transparent 4px),radial-gradient(circle at 63% 64%,rgba(255,255,255,.88) 0 2px,transparent 3px);background-size:72px 72px,72px 72px,100% 100%,100% 100%;transform:translateY(calc(var(--hero-y)*26px));mix-blend-mode:screen}
+    .quick-path-line{position:relative;height:2px;overflow:hidden;border-radius:999px;background:rgba(18,20,19,.08)}.quick-path-line:before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(90deg,#193127,#b9e86e);transform:scaleX(var(--quick-progress));transform-origin:left center;transition:transform .14s linear}
+    .bar-grow{transform-origin:left center;transform:scaleX(.25);transition:transform .85s cubic-bezier(.22,1,.36,1)}.is-visible .bar-grow,.situation-card.is-visible .bar-grow{transform:scaleX(1)}
+    .service-card svg path{stroke-dasharray:80;stroke-dashoffset:80}.service-card.is-visible svg path{animation:drawPath 1.15s ease forwards}@keyframes drawPath{to{stroke-dashoffset:0}}
+    .process-widget .status-fill{width:0!important;transition:width 1.25s cubic-bezier(.22,1,.36,1)}.process-widget.is-visible .status-100{width:100%!important}.process-widget.is-visible .status-75{width:75%!important;transition-delay:.18s}.process-widget.is-visible .status-24{width:24%!important;transition-delay:.34s}.process-badge{transition:transform .8s cubic-bezier(.22,1,.36,1),opacity .8s cubic-bezier(.22,1,.36,1)}.process-widget:not(.is-visible) .process-badge:first-child{transform:translate(-18px,14px);opacity:0}.process-widget:not(.is-visible) .process-badge:nth-child(2){transform:translate(18px,-14px);opacity:0}
+    .prepare-card{position:relative;overflow:hidden}.prepare-card:after{content:"OK";position:absolute;right:18px;top:18px;border:1px solid rgba(53,100,77,.18);border-radius:999px;color:rgba(53,100,77,.38);font-size:12px;font-weight:800;letter-spacing:.16em;padding:8px 10px;transform:rotate(-10deg) scale(.88);opacity:0;transition:opacity .55s ease,transform .55s ease}.prepare-card.is-visible:after{opacity:1;transform:rotate(-5deg) scale(1);transition-delay:.32s}
+    .parallax-card{overflow:hidden}.parallax-card img{transform:translateY(calc(var(--parallax-y,0)*22px)) scale(1.08);transition:transform .16s linear;will-change:transform}
+    .topo-section{position:relative;isolation:isolate}.topo-section:before{content:"";position:absolute;inset:-20%;z-index:0;opacity:.16;pointer-events:none;background:repeating-radial-gradient(circle at 18% 22%,transparent 0 26px,rgba(185,232,110,.52) 27px 28px,transparent 29px 52px),repeating-radial-gradient(circle at 72% 70%,transparent 0 34px,rgba(255,255,255,.28) 35px 36px,transparent 37px 64px);transform:translate3d(calc(var(--topo-shift)*-18px),calc(var(--topo-shift)*26px),0) rotate(-3deg);transition:transform .16s linear}.topo-section>*{position:relative;z-index:1}.progress-stat.is-visible{animation:statPulse .9s cubic-bezier(.22,1,.36,1) both}@keyframes statPulse{0%{transform:translateY(18px) scale(.96);opacity:0}70%{transform:translateY(0) scale(1.03);opacity:1}100%{transform:translateY(0) scale(1);opacity:1}}details.faq-card p{animation:faqOpen .35s ease both}@keyframes faqOpen{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+    @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal,.stagger-reveal>*{opacity:1!important;transform:none!important;filter:none!important}.hero-media img,.parallax-card img,.topo-section:before,.hero-media:before{transform:none!important}.quick-path-line:before{transform:scaleX(1)!important}.process-widget .status-100{width:100%!important}.process-widget .status-75{width:75%!important}.process-widget .status-24{width:24%!important}}
+  </style>
+</head>
+<body class="bg-[#eeeeec] text-ink antialiased">
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <noscript><style>.reveal,.stagger-reveal>*{opacity:1!important;transform:none!important;filter:none!important}.quick-path-line:before{transform:scaleX(1)!important}</style></noscript>
+  <div class="mx-auto w-full max-w-[1320px] bg-[#fbfbf8] shadow-soft">
+    <header class="sticky top-0 z-50 border-b border-black/5 bg-[#fbfbf8]/90 backdrop-blur-xl">
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-14">
+        <a href="#top" class="flex items-center gap-3"><span class="grid h-9 w-9 place-items-center rounded-full bg-geo-900 text-limebrand">⌖</span><span><span class="block text-sm font-semibold">Dawid Domżał</span><span class="block text-[11px] uppercase tracking-[.22em] text-black/45">Usługi geodezyjne</span></span></a>
+        <nav class="hidden items-center gap-7 text-sm text-black/70 lg:flex"><a href="#sytuacje" class="hover:text-geo-700">Sytuacje</a><a href="#uslugi" class="hover:text-geo-700">Usługi</a><a href="#proces" class="hover:text-geo-700">Proces</a><a href="#przygotuj" class="hover:text-geo-700">Co przygotować</a><a href="#faq" class="hover:text-geo-700">FAQ</a><a href="#kontakt" class="hover:text-geo-700">Kontakt</a></nav>
+        <a href="tel:+48501719855" class="rounded-full bg-limebrand px-5 py-2.5 text-sm font-semibold text-geo-900 transition hover:-translate-y-0.5 hover:shadow-card">Zadzwoń</a>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="relative overflow-hidden bg-geo-900 text-white">
+        <div class="absolute left-0 top-0 h-[520px] w-[520px] -translate-x-1/3 -translate-y-1/3 rounded-full bg-limebrand/20 blur-3xl"></div>
+        <div class="relative z-10 grid min-h-[680px] lg:grid-cols-2">
+          <div class="flex items-center px-6 py-16 lg:justify-end lg:px-14 lg:py-24">
+            <div class="stagger-reveal reveal w-full max-w-[620px] lg:pr-10">
+              <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-medium text-white/82 shadow-card backdrop-blur-xl"><span class="h-2 w-2 rounded-full bg-limebrand"></span>Geodeta Kalisz i okolice</div>
+              <h1 class="max-w-3xl text-5xl font-semibold leading-[.95] tracking-[-0.055em] md:text-6xl lg:text-7xl">Geodezja, która porządkuje inwestycję od pierwszej mapy do odbioru.</h1>
+              <p class="mt-7 max-w-xl text-base leading-7 text-white/68 md:text-lg">Mapy do celów projektowych, tyczenia budynków, podziały nieruchomości, inwentaryzacje powykonawcze i stała obsługa inwestycji. Konkretnie, terminowo i z jasnym planem działania.</p>
+              <div class="mt-9 flex flex-col gap-3 sm:flex-row"><a href="tel:+48501719855" class="rounded-full bg-limebrand px-7 py-4 text-center text-sm font-semibold text-geo-900 transition hover:-translate-y-0.5 hover:shadow-soft">Umów pomiar</a><a href="mailto:domzal-dawid@wp.pl" class="rounded-full border border-white/18 bg-white/10 px-7 py-4 text-center text-sm font-semibold text-white backdrop-blur-xl transition hover:-translate-y-0.5 hover:bg-white/16">Wyślij zapytanie</a></div>
+              <div class="mt-9 grid max-w-xl grid-cols-3 gap-3 border-t border-white/12 pt-6 text-sm"><div><p class="text-2xl font-semibold">Kalisz</p><p class="mt-1 text-white/50">lokalna obsługa</p></div><div><p class="text-2xl font-semibold">od A do Z</p><p class="mt-1 text-white/50">teren i dokumenty</p></div><div><p class="text-2xl font-semibold">1:1</p><p class="mt-1 text-white/50">kontakt z geodetą</p></div></div>
+            </div>
+          </div>
+          <div class="hero-media reveal relative min-h-[440px] lg:min-h-full"><img src="https://images.unsplash.com/photo-1523413363574-c30aa1c2a516?auto=format&fit=crop&w=1400&q=80" alt="Geodeta podczas pracy z dokumentacją i mapą" class="absolute inset-0 h-full w-full object-cover" /></div>
+        </div>
+      </section>
+
+      <section id="szybka-sciezka" class="border-b border-black/6 bg-[#f4f4ef] px-6 py-14 lg:px-14 lg:py-20">
+        <div class="mx-auto max-w-7xl">
+          <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between"><div class="reveal"><p class="text-sm font-semibold uppercase tracking-[.24em] text-geo-600">Szybka ścieżka</p><h2 class="mt-3 max-w-2xl text-3xl font-semibold leading-tight tracking-[-0.035em] md:text-4xl">Od pierwszego telefonu do gotowych materiałów.</h2></div><p class="reveal max-w-xl text-base leading-7 text-black/58 lg:text-right">Prosty proces zmniejsza niepewność. Już na początku wiesz, czego potrzebujemy, co zostanie wykonane i jaki będzie kolejny krok.</p></div>
+          <div class="quick-path-line mt-10" aria-hidden="true"></div>
+          <div class="mt-8 grid gap-4 md:grid-cols-3"><article class="path-card reveal rounded-[1.5rem] bg-white p-7 shadow-card"><p class="text-sm font-semibold text-geo-700">01</p><h3 class="mt-6 text-xl font-semibold">Opisujesz sprawę</h3><p class="mt-3 text-sm leading-6 text-black/55">Podajesz lokalizację działki i cel: projekt, budowa, podział, granice lub odbiór.</p></article><article class="path-card reveal rounded-[1.5rem] bg-white p-7 shadow-card"><p class="text-sm font-semibold text-geo-700">02</p><h3 class="mt-6 text-xl font-semibold">Ustalamy zakres</h3><p class="mt-3 text-sm leading-6 text-black/55">Wiesz, jakie dokumenty będą potrzebne, jaki jest kolejny krok i czego możesz się spodziewać.</p></article><article class="path-card reveal rounded-[1.5rem] bg-limebrand p-7 shadow-card"><p class="text-sm font-semibold text-geo-900">03</p><h3 class="mt-6 text-xl font-semibold">Realizujemy pomiar</h3><p class="mt-3 text-sm leading-6 text-geo-900/68">Prace terenowe, opracowanie dokumentacji i przekazanie gotowych materiałów.</p></article></div>
+        </div>
+      </section>
+
+      <section id="sytuacje" class="px-6 py-16 lg:px-14 lg:py-24"><div class="mx-auto max-w-7xl"><div class="reveal max-w-3xl"><p class="text-sm font-semibold uppercase tracking-[.24em] text-geo-600">W jakiej sytuacji jesteś?</p><h2 class="mt-4 text-4xl font-semibold leading-tight tracking-[-0.04em] md:text-5xl">Nie musisz znać nazwy usługi. Wystarczy, że rozpoznasz swój etap.</h2><p class="mt-5 max-w-2xl leading-7 text-black/58">Klient zwykle nie szuka geodezji dla samej geodezji. Chce ruszyć z projektem, rozpocząć budowę, uporządkować granice albo zamknąć odbiór.</p></div><div class="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-5"><article class="situation-card reveal rounded-[1.6rem] bg-white p-6 shadow-card xl:col-span-2"><div class="bar-grow mb-8 h-1.5 w-16 rounded-full bg-limebrand"></div><h3 class="text-2xl font-semibold">Buduję dom</h3><p class="mt-3 text-sm leading-6 text-black/56">Najczęściej potrzebujesz mapy do celów projektowych, a później wytyczenia budynku w terenie.</p><a href="#kontakt" class="mt-6 inline-flex text-sm font-semibold text-geo-700">Zapytaj o obsługę budowy →</a></article><article class="situation-card reveal rounded-[1.6rem] bg-geo-900 p-6 text-white shadow-card xl:col-span-3"><div class="bar-grow mb-8 h-1.5 w-16 rounded-full bg-limebrand"></div><h3 class="text-2xl font-semibold">Nie wiem, od czego zacząć</h3><p class="mt-3 text-sm leading-6 text-white/62">To normalne. Wystarczy numer działki, miejscowość i krótki opis celu. Po rozmowie ustalimy, jakie prace są potrzebne.</p></article><article class="situation-card reveal rounded-[1.6rem] bg-white p-6 shadow-card"><h3 class="text-xl font-semibold">Chcę podzielić działkę</h3><p class="mt-3 text-sm leading-6 text-black/56">Pomożemy przejść przez dokumentację i uporządkować temat granic.</p></article><article class="situation-card reveal rounded-[1.6rem] bg-white p-6 shadow-card"><h3 class="text-xl font-semibold">Kończę budowę</h3><p class="mt-3 text-sm leading-6 text-black/56">Potrzebna będzie inwentaryzacja powykonawcza do zakończenia formalności.</p></article><article class="situation-card reveal rounded-[1.6rem] bg-white p-6 shadow-card xl:col-span-3"><h3 class="text-xl font-semibold">Potrzebuję materiałów dla projektanta</h3><p class="mt-3 text-sm leading-6 text-black/56">Dostarczymy mapę i dane potrzebne do przygotowania dokumentacji projektowej.</p></article></div></div></section>
+
+      <section id="uslugi" class="px-6 py-16 lg:px-14 lg:py-24"><div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)]"><div class="reveal lg:sticky lg:top-28"><p class="text-sm font-semibold uppercase tracking-[.24em] text-geo-600">Zakres prac</p><h2 class="mt-4 max-w-md text-4xl font-semibold leading-tight tracking-[-0.04em] md:text-5xl">Usługi geodezyjne bez chaosu i niedomówień.</h2><p class="mt-5 max-w-md leading-7 text-black/58">Wybierz usługę, której potrzebujesz teraz. Jeżeli nie masz pewności, opisz sytuację - pomożemy ustalić właściwy zakres prac.</p></div><div class="grid gap-4 sm:grid-cols-2">
+        <article class="service-card reveal rounded-[1.6rem] border border-black/6 bg-white p-7 shadow-card"><svg viewBox="0 0 24 24" fill="none" class="mb-8 h-12 w-12 rounded-2xl bg-geo-50 p-3 text-geo-700"><path d="M5 5h14v14H5V5Z" stroke="currentColor" stroke-width="1.7"/><path d="M8 9h8M8 13h5M16 16l3 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><h3 class="text-xl font-semibold">Mapy do celów projektowych</h3><p class="mt-3 text-sm leading-6 text-black/56">Dokumentacja potrzebna architektowi, projektantowi i inwestorowi.</p></article>
+        <article class="service-card reveal rounded-[1.6rem] border border-black/6 bg-white p-7 shadow-card"><svg viewBox="0 0 24 24" fill="none" class="mb-8 h-12 w-12 rounded-2xl bg-geo-50 p-3 text-geo-700"><path d="M4 17 12 5l8 12H4Z" stroke="currentColor" stroke-width="1.7"/><path d="M12 10v7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><h3 class="text-xl font-semibold">Tyczenie budynków i sieci</h3><p class="mt-3 text-sm leading-6 text-black/56">Precyzyjne wyznaczenie obiektu w terenie, zgodnie z projektem.</p></article>
+        <article class="service-card reveal rounded-[1.6rem] border border-black/6 bg-white p-7 shadow-card"><svg viewBox="0 0 24 24" fill="none" class="mb-8 h-12 w-12 rounded-2xl bg-geo-50 p-3 text-geo-700"><path d="M7 4v16M17 4v16M4 8h16M4 16h16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><h3 class="text-xl font-semibold">Podziały nieruchomości</h3><p class="mt-3 text-sm leading-6 text-black/56">Wsparcie przy podziale działki i uporządkowaniu granic.</p></article>
+        <article class="service-card reveal rounded-[1.6rem] border border-black/6 bg-white p-7 shadow-card"><svg viewBox="0 0 24 24" fill="none" class="mb-8 h-12 w-12 rounded-2xl bg-geo-50 p-3 text-geo-700"><path d="M5 19V6l7-3 7 3v13l-7 3-7-3Z" stroke="currentColor" stroke-width="1.7"/><path d="m5 6 7 3 7-3M12 9v13" stroke="currentColor" stroke-width="1.7"/></svg><h3 class="text-xl font-semibold">Inwentaryzacje powykonawcze</h3><p class="mt-3 text-sm leading-6 text-black/56">Pomiary wymagane po zakończeniu prac budowlanych i instalacyjnych.</p></article>
+        </div></div></section>
+
+      <section id="proces" class="px-6 py-16 lg:px-14 lg:py-24"><div class="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2 lg:items-center"><div class="order-2 lg:order-1"><div class="process-widget reveal relative mx-auto max-w-md rounded-[2rem] bg-[#eef1ed] p-8 shadow-card"><div class="process-badge absolute -left-6 top-10 hidden rounded-full bg-limebrand px-4 py-2 text-xs font-semibold text-geo-900 md:block">teren</div><div class="process-badge absolute -right-6 bottom-16 hidden rounded-full bg-geo-900 px-4 py-2 text-xs font-semibold text-white md:block">dokumentacja</div><div class="rounded-[1.5rem] bg-white p-5 shadow-card"><div class="mb-5 flex items-center justify-between"><div><p class="text-xs uppercase tracking-[.2em] text-black/42">Status zlecenia</p><h3 class="mt-1 text-xl font-semibold">Mapa do projektu</h3></div><span class="rounded-full bg-limebrand px-3 py-1 text-xs font-semibold text-geo-900">w toku</span></div><div class="space-y-3"><div class="rounded-2xl bg-[#f7f7f3] p-4"><div class="flex justify-between text-sm"><span>Ustalenie zakresu</span><span>100%</span></div><div class="mt-3 h-2 rounded-full bg-black/5"><div class="status-fill status-100 h-2 rounded-full bg-geo-700"></div></div></div><div class="rounded-2xl bg-[#f7f7f3] p-4"><div class="flex justify-between text-sm"><span>Pomiar w terenie</span><span>75%</span></div><div class="mt-3 h-2 rounded-full bg-black/5"><div class="status-fill status-75 h-2 rounded-full bg-limebrand"></div></div></div><div class="rounded-2xl bg-[#f7f7f3] p-4"><div class="flex justify-between text-sm"><span>Opracowanie mapy</span><span>następny krok</span></div><div class="mt-3 h-2 rounded-full bg-black/5"><div class="status-fill status-24 h-2 rounded-full bg-black/20"></div></div></div></div></div></div></div><div class="order-1 lg:order-2"><div class="reveal"><p class="text-sm font-semibold uppercase tracking-[.24em] text-geo-600">Proces</p><h2 class="mt-4 text-4xl font-semibold leading-tight tracking-[-0.04em] md:text-5xl">Wiesz, co trzeba przygotować i co wydarzy się dalej.</h2><p class="mt-5 max-w-xl leading-7 text-black/58">Komunikacja na stronie jest spokojna, prosta i zadaniowa.</p></div><div class="mt-8 grid gap-4 sm:grid-cols-2"><div class="process-card reveal rounded-[1.4rem] bg-white p-6 shadow-card"><p class="text-sm font-semibold text-geo-700">01</p><h3 class="mt-3 font-semibold">Krótka konsultacja</h3><p class="mt-2 text-sm leading-6 text-black/55">Ustalenie rodzaju sprawy i lokalizacji działki.</p></div><div class="process-card reveal rounded-[1.4rem] bg-white p-6 shadow-card"><p class="text-sm font-semibold text-geo-700">02</p><h3 class="mt-3 font-semibold">Termin i pomiar</h3><p class="mt-2 text-sm leading-6 text-black/55">Prace terenowe zgodnie z ustalonym zakresem.</p></div><div class="process-card reveal rounded-[1.4rem] bg-white p-6 shadow-card"><p class="text-sm font-semibold text-geo-700">03</p><h3 class="mt-3 font-semibold">Opracowanie</h3><p class="mt-2 text-sm leading-6 text-black/55">Przygotowanie map, szkiców i dokumentacji.</p></div><div class="process-card reveal rounded-[1.4rem] bg-limebrand p-6 shadow-card"><p class="text-sm font-semibold text-geo-900">04</p><h3 class="mt-3 font-semibold">Przekazanie materiałów</h3><p class="mt-2 text-sm leading-6 text-geo-900/68">Finalne dokumenty trafiają do klienta.</p></div></div></div></div></section>
+
+      <section id="przygotuj" class="bg-[#f4f4ef] px-6 py-16 lg:px-14 lg:py-24"><div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]"><div class="reveal"><p class="text-sm font-semibold uppercase tracking-[.24em] text-geo-600">Co przygotować?</p><h2 class="mt-4 max-w-xl text-4xl font-semibold leading-tight tracking-[-0.04em] md:text-5xl">Im prostszy start, tym szybciej można ustalić kolejny krok.</h2><p class="mt-5 max-w-xl leading-7 text-black/58">Wystarczy kilka podstawowych informacji, żeby określić potrzebny zakres prac.</p></div><div class="grid gap-4 sm:grid-cols-2"><article class="prepare-card reveal rounded-[1.5rem] bg-white p-6 shadow-card"><p class="text-sm font-semibold text-geo-700">01</p><h3 class="mt-5 font-semibold">Numer działki</h3><p class="mt-2 text-sm leading-6 text-black/55">Jeżeli go znasz, podaj numer działki lub księgi wieczystej.</p></article><article class="prepare-card reveal rounded-[1.5rem] bg-white p-6 shadow-card"><p class="text-sm font-semibold text-geo-700">02</p><h3 class="mt-5 font-semibold">Miejscowość i obręb</h3><p class="mt-2 text-sm leading-6 text-black/55">Wystarczy możliwie dokładna lokalizacja działki.</p></article><article class="prepare-card reveal rounded-[1.5rem] bg-white p-6 shadow-card"><p class="text-sm font-semibold text-geo-700">03</p><h3 class="mt-5 font-semibold">Cel prac</h3><p class="mt-2 text-sm leading-6 text-black/55">Projekt, budowa, podział, sprzedaż, granice lub odbiór.</p></article><article class="prepare-card reveal rounded-[1.5rem] bg-limebrand p-6 shadow-card"><p class="text-sm font-semibold text-geo-900">04</p><h3 class="mt-5 font-semibold">Termin</h3><p class="mt-2 text-sm leading-6 text-geo-900/68">Jeżeli sprawa jest pilna, warto powiedzieć o tym od razu.</p></article></div></div></section>
+
+      <section id="dla-kogo" class="px-6 py-16 lg:px-14 lg:py-24"><div class="mx-auto max-w-7xl"><div class="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]"><div class="reveal"><p class="text-sm font-semibold uppercase tracking-[.24em] text-geo-600">Dla kogo</p><h2 class="mt-4 text-4xl font-semibold leading-tight tracking-[-0.04em] md:text-5xl">Jedna firma, różne scenariusze inwestycyjne.</h2></div><p class="reveal max-w-2xl leading-7 text-black/58 lg:justify-self-end">Oferta jest pokazana przez konkretne sytuacje, a nie tylko przez listę usług.</p></div><div class="mt-12 grid gap-5 md:grid-cols-3"><article class="parallax-card reveal rounded-[1.8rem] bg-white p-7 shadow-card"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=80" alt="Dom jednorodzinny" class="h-52 w-full rounded-[1.2rem] object-cover"><h3 class="mt-7 text-xl font-semibold">Klienci indywidualni</h3><p class="mt-3 text-sm leading-6 text-black/56">Budowa domu, podział działki, wznowienie granic.</p></article><article class="parallax-card reveal rounded-[1.8rem] bg-geo-900 p-7 text-white shadow-card"><img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=900&q=80" alt="Plac budowy" class="h-52 w-full rounded-[1.2rem] object-cover opacity-90"><h3 class="mt-7 text-xl font-semibold">Wykonawcy i inwestorzy</h3><p class="mt-3 text-sm leading-6 text-white/64">Tyczenie obiektów i bieżąca obsługa budów.</p></article><article class="parallax-card reveal rounded-[1.8rem] bg-white p-7 shadow-card"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=80" alt="Dokumentacja" class="h-52 w-full rounded-[1.2rem] object-cover"><h3 class="mt-7 text-xl font-semibold">Projektanci i biura</h3><p class="mt-3 text-sm leading-6 text-black/56">Mapy i materiały do przygotowania dokumentacji.</p></article></div></div></section>
+
+      <section class="px-6 py-16 lg:px-14 lg:py-24"><div class="topo-section mx-auto grid max-w-7xl overflow-hidden rounded-[2.2rem] bg-geo-900 text-white lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)]"><div class="p-8 md:p-12 lg:p-16"><p class="text-sm font-semibold uppercase tracking-[.24em] text-limebrand">Dlaczego warto</p><h2 class="mt-5 max-w-xl text-4xl font-semibold leading-tight tracking-[-0.04em] md:text-5xl">Mniej stresu przy mapach, granicach i odbiorach budowy.</h2><p class="mt-5 max-w-xl leading-7 text-white/62">Sprawa jest prowadzona krok po kroku, a dokumenty nie zatrzymują dalszych prac.</p><div class="mt-10 grid gap-4 sm:grid-cols-3"><div class="progress-stat reveal rounded-3xl bg-white/8 p-5"><p class="text-3xl font-semibold">01</p><p class="mt-2 text-sm text-white/62">jasny zakres</p></div><div class="progress-stat reveal rounded-3xl bg-white/8 p-5"><p class="text-3xl font-semibold">02</p><p class="mt-2 text-sm text-white/62">terminowe pomiary</p></div><div class="progress-stat reveal rounded-3xl bg-white/8 p-5"><p class="text-3xl font-semibold">03</p><p class="mt-2 text-sm text-white/62">pełna dokumentacja</p></div></div></div><div class="relative min-h-[460px] bg-[#dfe7df]"><img src="https://images.unsplash.com/photo-1566837945700-30057527ade0?auto=format&fit=crop&w=1200&q=80" alt="Pomiary geodezyjne" class="absolute inset-0 h-full w-full object-cover mix-blend-multiply"><div class="absolute bottom-6 left-6 right-6 rounded-[1.5rem] border border-white/70 bg-white/95 p-6 text-ink shadow-soft backdrop-blur-xl"><p class="text-base font-bold tracking-[-0.01em] text-geo-900">Najczęstsze sprawy klientów</p><div class="mt-4 grid gap-3 sm:grid-cols-2"><p class="rounded-2xl border border-black/5 bg-white p-4 text-sm font-medium text-black/78 shadow-card">Rozpoczynam budowę</p><p class="rounded-2xl border border-black/5 bg-white p-4 text-sm font-medium text-black/78 shadow-card">Dzielę działkę</p><p class="rounded-2xl border border-black/5 bg-white p-4 text-sm font-medium text-black/78 shadow-card">Kończę budowę</p><p class="rounded-2xl border border-black/5 bg-white p-4 text-sm font-medium text-black/78 shadow-card">Nie wiem, od czego zacząć</p></div></div></div></div></section>
+
+      <section id="opinie" class="px-6 py-16 lg:px-14 lg:py-24">
+        <div class="mx-auto max-w-7xl">
+          <div class="reveal mx-auto max-w-3xl text-center">
+            <p class="text-sm font-semibold uppercase tracking-[.24em] text-geo-600">Zaufanie</p>
+            <h2 class="mt-4 text-4xl font-semibold leading-tight tracking-[-0.04em] md:text-5xl">
+              Geodeta, który pomaga przejść przez formalności bez zgadywania.
+            </h2>
+            <p class="mx-auto mt-5 max-w-2xl leading-7 text-black/58">
+              Klienci doceniają spokojne wyjaśnienie sprawy, konkretny plan działania i informację, czego mogą spodziewać się na każdym etapie prac geodezyjnych.
+            </p>
+          </div>
+
+          <div class="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            <blockquote class="testimonial-card reveal rounded-[1.7rem] border border-black/6 bg-white p-7 shadow-card">
+              <div class="mb-5 flex items-center justify-between gap-4">
+                <div class="text-sm tracking-[.12em] text-limebrand">★★★★★</div>
+                <span class="rounded-full bg-geo-50 px-3 py-1 text-xs font-semibold text-geo-700">mapa do projektu</span>
+              </div>
+              <p class="text-base leading-7 text-black/70">„Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sprawa została wyjaśniona spokojnie, krok po kroku.”</p>
+              <footer class="mt-6 border-t border-black/6 pt-4 text-sm text-black/45">Klient indywidualny - Kalisz</footer>
+            </blockquote>
+
+            <blockquote class="testimonial-card reveal rounded-[1.7rem] border border-black/6 bg-white p-7 shadow-card">
+              <div class="mb-5 flex items-center justify-between gap-4">
+                <div class="text-sm tracking-[.12em] text-limebrand">★★★★★</div>
+                <span class="rounded-full bg-geo-50 px-3 py-1 text-xs font-semibold text-geo-700">tyczenie</span>
+              </div>
+              <p class="text-base leading-7 text-black/70">„Sed do eiusmod tempor incididunt ut labore. Dobry kontakt, konkretny termin i jasna informacja, co będzie wykonane.”</p>
+              <footer class="mt-6 border-t border-black/6 pt-4 text-sm text-black/45">Wykonawca - okolice Kalisza</footer>
+            </blockquote>
+
+            <blockquote class="testimonial-card reveal rounded-[1.7rem] border border-black/6 bg-white p-7 shadow-card">
+              <div class="mb-5 flex items-center justify-between gap-4">
+                <div class="text-sm tracking-[.12em] text-limebrand">★★★★★</div>
+                <span class="rounded-full bg-geo-50 px-3 py-1 text-xs font-semibold text-geo-700">podział działki</span>
+              </div>
+              <p class="text-base leading-7 text-black/70">„Ut enim ad minim veniam, quis nostrud exercitation. Wiedzieliśmy, jakie dokumenty będą potrzebne i od czego zacząć.”</p>
+              <footer class="mt-6 border-t border-black/6 pt-4 text-sm text-black/45">Inwestor prywatny</footer>
+            </blockquote>
+
+            <blockquote class="testimonial-card reveal rounded-[1.7rem] border border-black/6 bg-white p-7 shadow-card">
+              <div class="mb-5 flex items-center justify-between gap-4">
+                <div class="text-sm tracking-[.12em] text-limebrand">★★★★★</div>
+                <span class="rounded-full bg-geo-50 px-3 py-1 text-xs font-semibold text-geo-700">inwentaryzacja</span>
+              </div>
+              <p class="text-base leading-7 text-black/70">„Duis aute irure dolor in reprehenderit. Wszystko przebiegło sprawnie, bez niepotrzebnego przeciągania tematu.”</p>
+              <footer class="mt-6 border-t border-black/6 pt-4 text-sm text-black/45">Klient indywidualny</footer>
+            </blockquote>
+
+            <blockquote class="testimonial-card reveal rounded-[1.7rem] border border-black/6 bg-geo-900 p-7 text-white shadow-card">
+              <div class="mb-5 flex items-center justify-between gap-4">
+                <div class="text-sm tracking-[.12em] text-limebrand">★★★★★</div>
+                <span class="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-limebrand">obsługa budowy</span>
+              </div>
+              <p class="text-base leading-7 text-white/76">„Excepteur sint occaecat cupidatat non proident. Największy plus to jasny kontakt i informacja, co będzie następnym krokiem.”</p>
+              <footer class="mt-6 border-t border-white/10 pt-4 text-sm text-white/45">Firma wykonawcza</footer>
+            </blockquote>
+
+            <blockquote class="testimonial-card reveal rounded-[1.7rem] border border-black/6 bg-white p-7 shadow-card">
+              <div class="mb-5 flex items-center justify-between gap-4">
+                <div class="text-sm tracking-[.12em] text-limebrand">★★★★★</div>
+                <span class="rounded-full bg-geo-50 px-3 py-1 text-xs font-semibold text-geo-700">granice</span>
+              </div>
+              <p class="text-base leading-7 text-black/70">„Sunt in culpa qui officia deserunt mollit anim id est laborum. Konkretna rozmowa i szybkie ustalenie zakresu.”</p>
+              <footer class="mt-6 border-t border-black/6 pt-4 text-sm text-black/45">Właściciel działki</footer>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="bg-[#f7f7f3] px-6 py-16 lg:px-14 lg:py-24">
+        <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
+          <div class="reveal">
+            <p class="text-sm font-semibold uppercase tracking-[.24em] text-geo-600">FAQ</p>
+            <h2 class="mt-4 max-w-xl text-4xl font-semibold leading-tight tracking-[-0.04em] md:text-5xl">Najczęstsze pytania przed kontaktem z geodetą.</h2>
+            <p class="mt-5 max-w-md leading-7 text-black/58">Odpowiedzi są napisane prostym językiem, żeby klient wiedział, kiedy potrzebuje geodety i co przygotować przed pierwszą rozmową.</p>
+          </div>
+
+          <div class="space-y-4">
+            <details class="faq-card reveal rounded-[1.5rem] bg-white p-6 shadow-card" open>
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-semibold">Kiedy potrzebuję mapy do celów projektowych?<span class="text-2xl text-geo-700">+</span></summary>
+              <p class="mt-4 text-sm leading-6 text-black/56">Najczęściej wtedy, gdy przygotowujesz projekt budowlany, projekt zagospodarowania działki lub dokumentację dla architekta. Mapa do celów projektowych jest opracowaniem wykonywanym przez geodetę na podstawie aktualnych danych i pomiaru w terenie.</p>
+            </details>
+
+            <details class="faq-card reveal rounded-[1.5rem] bg-white p-6 shadow-card">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-semibold">Czy mapa do celów projektowych ma termin ważności?<span class="text-2xl text-geo-700">+</span></summary>
+              <p class="mt-4 text-sm leading-6 text-black/56">Przepisy nie określają jednego, stałego terminu ważności. W praktyce mapa jest aktualna tak długo, jak długo nie zmieniły się informacje, które przedstawia, na przykład uzbrojenie terenu, zabudowa lub inne elementy ważne dla projektu.</p>
+            </details>
+
+            <details class="faq-card reveal rounded-[1.5rem] bg-white p-6 shadow-card">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-semibold">Kiedy trzeba wytyczyć budynek w terenie?<span class="text-2xl text-geo-700">+</span></summary>
+              <p class="mt-4 text-sm leading-6 text-black/56">Tyczenie wykonuje się przed rozpoczęciem robót w terenie, żeby przenieść projekt na działkę i precyzyjnie wskazać położenie budynku względem granic, istniejących obiektów i założeń projektu.</p>
+            </details>
+
+            <details class="faq-card reveal rounded-[1.5rem] bg-white p-6 shadow-card">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-semibold">Co to jest inwentaryzacja powykonawcza i kiedy jest potrzebna?<span class="text-2xl text-geo-700">+</span></summary>
+              <p class="mt-4 text-sm leading-6 text-black/56">To pomiar wykonany po zakończeniu budowy lub prac instalacyjnych. Pokazuje, co faktycznie powstało w terenie i jest potrzebny do uporządkowania dokumentacji oraz zakończenia formalności związanych z inwestycją.</p>
+            </details>
+
+            <details class="faq-card reveal rounded-[1.5rem] bg-white p-6 shadow-card">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-semibold">Co przygotować przed telefonem do geodety?<span class="text-2xl text-geo-700">+</span></summary>
+              <p class="mt-4 text-sm leading-6 text-black/56">Najlepiej przygotować numer działki, miejscowość lub obręb, krótki opis celu prac oraz informację, czy sprawa jest pilna. Jeżeli nie znasz numeru działki, wystarczy możliwie dokładna lokalizacja - dalsze informacje można ustalić w rozmowie.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="kontakt" class="px-6 py-16 lg:px-14 lg:py-24">
+        <div class="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+          <div class="reveal rounded-[2rem] bg-white p-8 shadow-card md:p-12">
+            <p class="text-sm font-semibold uppercase tracking-[.24em] text-geo-600">Kontakt</p>
+            <h2 class="mt-4 text-4xl font-semibold leading-tight tracking-[-0.04em] md:text-5xl">Opisz sprawę. Odezwiemy się z informacją, co dalej.</h2>
+            <p class="mt-5 leading-7 text-black/58">Najlepiej przygotować numer działki, obręb, lokalizację i krótki opis celu.</p>
+            <div class="mt-8 space-y-3">
+              <a href="tel:+48501719855" class="flex items-center justify-between rounded-2xl bg-[#f5f5f0] p-5 transition hover:bg-limebrand">
+                <span><span class="block text-xs uppercase tracking-[.18em] text-black/42">Telefon</span><span class="mt-1 block font-semibold">501 719 855</span></span><span class="text-2xl">→</span>
+              </a>
+              <a href="mailto:domzal-dawid@wp.pl" class="flex items-center justify-between rounded-2xl bg-[#f5f5f0] p-5 transition hover:bg-limebrand">
+                <span><span class="block text-xs uppercase tracking-[.18em] text-black/42">E-mail</span><span class="mt-1 block font-semibold">domzal-dawid@wp.pl</span></span><span class="text-2xl">→</span>
+              </a>
+            </div>
+          </div>
+
+          <form class="reveal rounded-[2rem] bg-geo-900 p-8 text-white shadow-card md:p-12">
+            <div class="grid gap-5">
+              <label><span class="text-sm text-white/70">Imię i nazwisko</span><input class="mt-2 w-full rounded-2xl border border-white/10 bg-white/8 px-5 py-4 text-white outline-none focus:border-limebrand" placeholder="Jan Kowalski"></label>
+              <label><span class="text-sm text-white/70">Telefon lub e-mail</span><input class="mt-2 w-full rounded-2xl border border-white/10 bg-white/8 px-5 py-4 text-white outline-none focus:border-limebrand" placeholder="np. 500 000 000"></label>
+              <label><span class="text-sm text-white/70">Opis</span><textarea rows="5" class="mt-2 w-full resize-none rounded-2xl border border-white/10 bg-white/8 px-5 py-4 text-white outline-none focus:border-limebrand" placeholder="Napisz, czego dotyczy sprawa i gdzie znajduje się działka."></textarea></label>
+              <button type="button" class="rounded-full bg-limebrand px-7 py-4 text-sm font-semibold text-geo-900 transition hover:-translate-y-0.5">Wyślij zapytanie</button>
+              <p class="text-xs leading-5 text-white/38">Formularz wizualny - przed wdrożeniem trzeba podłączyć wysyłkę i zgody RODO.</p>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-black/6 px-6 py-12 lg:px-14">
+      <div class="mx-auto flex max-w-7xl flex-col gap-6 text-sm text-black/54 md:flex-row md:items-center md:justify-between">
+        <p>© 2026 Usługi Geodezyjne Dawid Domżał. Projekt landing page.</p>
+        <div class="flex flex-wrap gap-5">
+          <a href="tel:+48501719855">501 719 855</a>
+          <a href="mailto:domzal-dawid@wp.pl">domzal-dawid@wp.pl</a>
+          <a href="https://www.facebook.com/UslugiGeodezyjneDawidDomzal/">Facebook</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (() => {
+      if (window.__geoScrollAnimationInit) return;
+      window.__geoScrollAnimationInit = true;
+
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const bar = document.querySelector('.scroll-progress');
+      const hero = document.querySelector('.hero-media');
+      const quick = document.querySelector('#szybka-sciezka');
+      const topo = document.querySelector('.topo-section');
+      const reveals = Array.from(document.querySelectorAll('.reveal, .stagger-reveal'));
+      const parallax = Array.from(document.querySelectorAll('.parallax-card'));
+      let ticking = false;
+
+      const clamp = (value, min = 0, max = 1) => Math.min(Math.max(value, min), max);
+
+      function setStaticState() {
+        reveals.forEach((el) => el.classList.add('is-visible'));
+        if (bar) bar.style.setProperty('--scroll-progress', '1');
+        if (quick) quick.style.setProperty('--quick-progress', '1');
+        parallax.forEach((card) => card.style.setProperty('--parallax-y', '0'));
+      }
+
+      function updateScrollEffects() {
+        ticking = false;
+
+        const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+        const pageProgress = clamp(window.scrollY / maxScroll);
+        if (bar) {
+          bar.style.setProperty('--scroll-progress', pageProgress.toFixed(4));
+        }
+
+        if (reduce.matches) return;
+
+        if (hero) {
+          const heroProgress = clamp(window.scrollY / Math.max(window.innerHeight, 1));
+          hero.style.setProperty('--hero-y', heroProgress.toFixed(3));
+        }
+
+        if (quick) {
+          const rect = quick.getBoundingClientRect();
+          const quickProgress = clamp((window.innerHeight - rect.top) / (rect.height + window.innerHeight * 0.25));
+          quick.style.setProperty('--quick-progress', quickProgress.toFixed(3));
+        }
+
+        parallax.forEach((card) => {
+          const rect = card.getBoundingClientRect();
+          const cardProgress = clamp((window.innerHeight - rect.top) / (window.innerHeight + rect.height));
+          card.style.setProperty('--parallax-y', (cardProgress - 0.5).toFixed(3));
+        });
+
+        if (topo) {
+          const rect = topo.getBoundingClientRect();
+          const topoProgress = clamp((window.innerHeight - rect.top) / (window.innerHeight + rect.height));
+          topo.style.setProperty('--topo-shift', topoProgress.toFixed(3));
+        }
+      }
+
+      function requestUpdate() {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(updateScrollEffects);
+      }
+
+      if (reduce.matches) {
+        setStaticState();
+      } else if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          });
+        }, {
+          threshold: 0.14,
+          rootMargin: '0px 0px -8% 0px'
+        });
+
+        reveals.forEach((el) => observer.observe(el));
+      } else {
+        reveals.forEach((el) => el.classList.add('is-visible'));
+      }
+
+      updateScrollEffects();
+      window.addEventListener('scroll', requestUpdate, { passive: true });
+      window.addEventListener('resize', requestUpdate);
+
+      if (reduce.addEventListener) {
+        reduce.addEventListener('change', () => {
+          if (reduce.matches) setStaticState();
+          requestUpdate();
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
