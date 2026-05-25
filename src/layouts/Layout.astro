@@ -2,11 +2,13 @@
 interface Props {
   title?: string;
   description?: string;
+  canonical?: string;
 }
 
 const {
   title = "Usługi Geodezyjne Dawid Domżał - Geodeta Kalisz",
-  description = "Usługi geodezyjne w Kaliszu i okolicach: mapy do celów projektowych, tyczenia budynków, podziały działek, inwentaryzacje powykonawcze i obsługa inwestycji."
+  description = "Usługi geodezyjne w Kaliszu i okolicach: mapy do celów projektowych, tyczenia budynków, podziały działek, inwentaryzacje powykonawcze i obsługa inwestycji.",
+  canonical = "https://dawid-domzal-website.wasmer.app"
 } = Astro.props;
 
 import "../styles/global.css";
@@ -19,6 +21,20 @@ import "../styles/global.css";
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content={description} />
   <title>{title}</title>
+  <link rel="canonical" href={canonical} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pl_PL" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content="https://dawid-domzal-website.wasmer.app/domzal-hero.jpg" />
+
+  <!-- Geo-targeting -->
+  <meta name="geo.region" content="PL-WP" />
+  <meta name="geo.placename" content="Kalisz" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,32 +43,132 @@ import "../styles/global.css";
 
   <link rel="preload" as="image" href="/domzal-hero.webp" type="image/webp" fetchpriority="high" />
 
-  <meta property="og:title" content="Usługi Geodezyjne Dawid Domżał" />
-  <meta property="og:description" content={description} />
-  <meta property="og:type" content="website" />
-
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Usługi Geodezyjne Dawid Domżał",
-    "description": description,
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Kalisz",
-      "addressRegion": "Wielkopolskie",
-      "addressCountry": "PL"
-    },
+    "image": "https://dawid-domzal-website.wasmer.app/domzal-hero.jpg",
+    "url": "https://dawid-domzal-website.wasmer.app",
     "telephone": "+48501719855",
     "email": "domzal-dawid@wp.pl",
-    "areaServed": {
-      "@type": "AdministrativeArea",
-      "name": "Kalisz i okolice"
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "ul. 29 Pułku Piechoty 11",
+      "addressLocality": "Kalisz",
+      "addressRegion": "Wielkopolska",
+      "postalCode": "62-800",
+      "addressCountry": "PL"
     },
-    "serviceType": [
-      "Mapy do celów projektowych",
-      "Tyczenie budynków i sieci",
-      "Podziały nieruchomości",
-      "Inwentaryzacje powykonawcze"
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 51.7588,
+      "longitude": 18.0827
+    },
+    "areaServed": [
+      "Kalisz",
+      "Ostrów Wielkopolski",
+      "Krotoszyn",
+      "Pleszew",
+      "Syców",
+      "Odolanów"
+    ],
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "08:00",
+      "closes": "18:00"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "reviewCount": "6"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Klient indywidualny - Kalisz"
+        },
+        "datePublished": "2026-03-10",
+        "reviewBody": "Sprawa została wyjaśniona spokojnie, krok po kroku.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        }
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Wykonawca - okolice Kalisza"
+        },
+        "datePublished": "2026-03-24",
+        "reviewBody": "Dobry kontakt, konkretny termin i jasna informacja, co będzie wykonane.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        }
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Inwestor prywatny"
+        },
+        "datePublished": "2026-04-05",
+        "reviewBody": "Wiedzieliśmy, jakie dokumenty będą potrzebne i od czego zacząć.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        }
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Klient indywidualny"
+        },
+        "datePublished": "2026-04-18",
+        "reviewBody": "Wszystko przebiegło sprawnie, bez niepotrzebnego przeciągania tematu.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        }
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Firma wykonawcza"
+        },
+        "datePublished": "2026-05-02",
+        "reviewBody": "Największy plus to jasny kontakt i informacja, co będzie następnym krokiem.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        }
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Właściciel działki"
+        },
+        "datePublished": "2026-05-15",
+        "reviewBody": "Konkretna rozmowa i szybkie ustalenie zakresu.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        }
+      }
     ]
   })} />
 </head>

@@ -1,0 +1,65 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="Obowiązek Informacyjny RODO | Usługi Geodezyjne Dawid Domżał" description="Klauzula informacyjna RODO serwisu Usługi Geodezyjne Dawid Domżał. Zobacz swoje prawa dotyczące danych osobowych." canonical="https://dawid-domzal-website.wasmer.app/rodo">
+  <!-- Simplified Subpage Header -->
+  <header class="sticky top-0 z-50 border-b border-black/5 bg-[#fbfbf8]/90 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-14">
+      <a href="/" class="flex items-center gap-3">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" class="shrink-0">
+          <rect width="36" height="36" rx="10" fill="#193127"/>
+          <circle cx="18" cy="18" r="13" stroke="#b9e86e" stroke-width="0.8" opacity="0.5"/>
+          <circle cx="18" cy="18" r="8.5" stroke="#b9e86e" stroke-width="0.6" opacity="0.3"/>
+          <circle cx="18" cy="18" r="4" stroke="#b9e86e" stroke-width="0.5" opacity="0.2"/>
+          <circle cx="18" cy="18" r="1.5" fill="#b9e86e"/>
+          <line x1="18" y1="5" x2="18" y2="11" stroke="#b9e86e" stroke-width="0.6" opacity="0.45"/>
+          <line x1="18" y1="25" x2="18" y2="31" stroke="#b9e86e" stroke-width="0.6" opacity="0.45"/>
+          <line x1="5" y1="18" x2="11" y2="18" stroke="#b9e86e" stroke-width="0.6" opacity="0.45"/>
+          <line x1="25" y1="18" x2="31" y2="18" stroke="#b9e86e" stroke-width="0.6" opacity="0.45"/>
+        </svg>
+        <span>
+          <span class="block text-sm font-semibold">Dawid Domżał</span>
+          <span class="block text-[11px] uppercase tracking-[.22em] text-black/45">Usługi geodezyjne</span>
+        </span>
+      </a>
+      <a href="/" class="text-sm font-medium text-black/60 transition-colors hover:text-geo-700">&larr; Wróć do strony głównej</a>
+    </div>
+  </header>
+
+  <!-- Main Container at max-width 900px -->
+  <main class="mx-auto max-w-[900px] px-6 md:px-14 py-16 lg:py-24">
+    <h1 class="text-4xl font-semibold leading-tight tracking-[-0.04em] md:text-5xl mb-8 text-geo-900">Obowiązek Informacyjny (RODO)</h1>
+    
+    <div class="prose prose-slate max-w-none text-black/70 space-y-6 leading-7">
+      <p>Zgodnie z art. 13 ust. 1 i ust. 2 Rozporządzenia Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (ogólne rozporządzenie o ochronie danych, zwane dalej <strong>RODO</strong>), informujemy o zasadach przetwarzania Twoich danych osobowych:</p>
+      
+      <h2 class="text-2xl font-semibold text-geo-900 mt-8">1. Kto jest Administratorem Twoich danych?</h2>
+      <p>Administratorem Twoich danych osobowych jest Dawid Domżał, prowadzący działalność gospodarczą pod firmą <strong>Usługi Geodezyjne Dawid Domżał</strong>, z siedzibą przy <strong>ul. 29 Pułku Piechoty 11, 62-800 Kalisz</strong>, e-mail: <code>domzal-dawid@wp.pl</code>, telefon: <code>501 719 855</code>.</p>
+
+      <h2 class="text-2xl font-semibold text-geo-900 mt-8">2. W jakim celu i na jakiej podstawie przetwarzamy dane?</h2>
+      <p>Twoje dane osobowe przetwarzane są:</p>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>W celu podjęcia działań na Twoje żądanie przed zawarciem umowy</strong>, np. przygotowania oferty usług geodezyjnych, wyceny prac (podstawa prawna: art. 6 ust. 1 lit. b RODO).</li>
+        <li><strong>W celu realizacji umowy na wykonanie usług geodezyjnych</strong> (np. sporządzenie mapy do celów projektowych, tyczenie budynków, podziały nieruchomości, inwentaryzacje geodezyjne powykonawcze) – podstawa prawna: art. 6 ust. 1 lit. b RODO.</li>
+        <li><strong>W celu wypełnienia obowiązków prawnych</strong> ciążących na Administratorze, w tym m.in. wynikających z przepisów ustawy Prawo geodezyjne i kartograficzne (np. zgłaszanie prac geodezyjnych do odpowiednich Ośrodków Dokumentacji Geodezyjnej i Kartograficznej), przepisów podatkowych oraz ustawy o rachunkowości (podstawa prawna: art. 6 ust. 1 lit. c RODO).</li>
+        <li><strong>W celu dochodzenia lub obrony ewentualnych roszczeń</strong> związanych z prowadzoną działalnością, co stanowi prawnie uzasadniony interes Administratora (podstawa prawna: art. 6 ust. 1 lit. f RODO).</li>
+      </ul>
+
+      <h2 class="text-2xl font-semibold text-geo-900 mt-8">3. Kto może być odbiorcą Twoich danych?</h2>
+      <p>Odbiorcami Twoich danych osobowych mogą być podmioty uprawnione do ich otrzymania na podstawie przepisów prawa, w tym Państwowy Zasób Geodezyjny i Kartograficzny, urzędy gmin, starostwa powiatowe, a także podwykonawcy realizujący usługi geodezyjne, biura rachunkowe obsługujące Administratora oraz dostawcy systemów IT.</p>
+
+      <h2 class="text-2xl font-semibold text-geo-900 mt-8">4. Jak długo przechowujemy dane osobowe?</h2>
+      <p>Dane osobowe będą przechowywane przez okres realizacji umowy, a po jej zakończeniu – przez okres wynikający z przepisów ustawy Prawo geodezyjne i kartograficzne dotyczące przechowywania operatów technicznych, a także przepisów prawa podatkowego (5 lat od końca roku podatkowego, w którym wystawiono fakturę) lub do czasu przedawnienia ewentualnych roszczeń.</p>
+
+      <h2 class="text-2xl font-semibold text-geo-900 mt-8">5. Twoje prawa w związku z ochroną danych</h2>
+      <p>Masz prawo żądania od Administratora dostępu do swoich danych osobowych, ich sprostowania, usunięcia lub ograniczenia przetwarzania, prawo do przenoszenia danych, a także wniesienia sprzeciwu wobec przetwarzania. Przysługuje Ci również prawo wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych (ul. Stawki 2, 00-193 Warszawa), jeżeli uważasz, że przetwarzanie narusza RODO.</p>
+
+      <h2 class="text-2xl font-semibold text-geo-900 mt-8">6. Czy podanie danych jest obowiązkowe?</h2>
+      <p>Podanie danych osobowych jest dobrowolne, ale niezbędne do przygotowania wyceny, zawarcia umowy i prawidłowego wykonania wnioskowanych usług geodezyjnych na Twojej nieruchomości. Brak podania danych uniemożliwi wykonanie prac geodezyjnych.</p>
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>

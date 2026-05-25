@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://dawid-domzal-website.wasmer.app/sitemap-index.xml

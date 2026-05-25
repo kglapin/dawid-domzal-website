@@ -45,7 +45,9 @@
       "Bash(wasmer whoami *)",
       "Bash(wasmer app *)",
       "Bash(wasmer deploy *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(xattr -c /Users/kamilglapinski_mbp14/Desktop/dawid-domzal-website/public/faq-bg.png)",
+      "Bash(xargs kill *)"
     ]
   },
   "enableAllProjectMcpServers": true,
