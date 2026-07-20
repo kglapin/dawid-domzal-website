@@ -1,0 +1,66 @@
+name: Verify and publish preview
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Astro site
+        run: npm run build
+
+      - name: Create standalone preview document
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64
+          import mimetypes
+          import re
+
+          dist = Path('dist')
+          html_path = dist / 'index.html'
+          html = html_path.read_text(encoding='utf-8')
+
+          def as_data_uri(path_value):
+              clean = path_value.split('?', 1)[0].lstrip('/')
+              target = dist / clean
+              if not target.is_file():
+                  return path_value
+              mime = mimetypes.guess_type(target.name)[0] or 'application/octet-stream'
+              encoded = base64.b64encode(target.read_bytes()).decode('ascii')
+              return f'data:{mime};base64,{encoded}'
+
+          for attr in ('src', 'href', 'srcset'):
+              pattern = rf'{attr}="(/[^"]+)"'
+              html = re.sub(pattern, lambda match: f'{attr}="{as_data_uri(match.group(1))}"', html)
+
+          (dist / 'preview-inline.html').write_text(html, encoding='utf-8')
+          PY
+
+      - name: Publish temporary preview branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: preview-site
+          publish_dir: ./dist
+          force_orphan: true
+          enable_jekyll: true
+          commit_message: Publish verified preview for ${{ github.sha }}
