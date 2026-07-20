@@ -19,10 +19,11 @@ jobs:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
 
-      - name: Materialize uploaded hero image and remove temporary implementation
-        if: ${{ hashFiles('.tmp/hero/part*.b64') != '' }}
+      - name: Materialize uploaded hero image
+        if: ${{ hashFiles('.tmp/domzal-hero.webp.b64') != '' }}
         run: |
-          cat .tmp/hero/part*.b64 | tr -d '\n\r ' | base64 --decode > public/domzal-hero.webp
+          tr -d '\n\r ' < .tmp/domzal-hero.webp.b64 | base64 --decode > public/domzal-hero.webp
+
           python - <<'PY'
           from pathlib import Path
           image = Path('public/domzal-hero.webp')
@@ -34,11 +35,7 @@ jobs:
           print(f'Zapisano poprawny kontener WebP: {expected_size} B')
           PY
 
-          if command -v identify >/dev/null 2>&1; then
-            identify public/domzal-hero.webp
-          else
-            file public/domzal-hero.webp | grep -q "Web/P image"
-          fi
+          file public/domzal-hero.webp | grep -q "Web/P image"
 
           rm -rf .tmp src/data/hero
           rm -f src/data/heroImage.ts src/pages/domzal-hero.webp.ts
