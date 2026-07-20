@@ -38,6 +38,7 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || "YOUR_WEB3FORMS_KEY";
         <input type="hidden" name="subject" value="Nowe zapytanie ze strony Dawid Domżał" />
         <input type="hidden" name="from_name" value="Formularz kontaktowy" />
         <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
+        <input type="text" name="website" class="hidden" style="display: none;" tabindex="-1" autocomplete="off" />
         <label>
           <span class="text-sm text-white/70">Imię i nazwisko</span>
           <input name="Imie_i_nazwisko" required class="mt-2 w-full rounded-2xl border border-white/10 bg-white/8 px-5 py-4 text-white outline-none focus:border-limebrand" placeholder="Jan Kowalski" />
@@ -54,6 +55,11 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || "YOUR_WEB3FORMS_KEY";
           <span class="text-sm text-white/70">Opis</span>
           <textarea name="Opis" rows="5" class="mt-2 w-full resize-none rounded-2xl border border-white/10 bg-white/8 px-5 py-4 text-white outline-none focus:border-limebrand" placeholder="Napisz, czego dotyczy sprawa i gdzie znajduje się działka."></textarea>
         </label>
+        <label>
+          <span id="captcha-label" class="text-sm text-white/70">Weryfikacja antyspamowa</span>
+          <input type="number" name="captcha" required class="mt-2 w-full rounded-2xl border border-white/10 bg-white/8 px-5 py-4 text-white outline-none focus:border-limebrand" />
+          <input type="hidden" name="captcha-expected" id="captcha-expected" />
+        </label>
         <label class="flex items-start gap-3 text-sm text-white/70">
           <input type="checkbox" name="zgoda_rodo" required class="mt-1 h-4 w-4 accent-limebrand" />
           <span>Wyrażam zgodę na przetwarzanie danych osobowych zgodnie z <a href="/polityka-prywatnosci" class="text-limebrand underline hover:no-underline">polityką prywatności</a> i RODO.</span>
@@ -67,25 +73,58 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || "YOUR_WEB3FORMS_KEY";
       (function() {
         var form = document.getElementById('contact-form');
         var status = document.getElementById('form-status');
-        if (!form || !status) return;
+        var expectedInput = document.getElementById('captcha-expected');
+        var captchaLabel = document.getElementById('captcha-label');
+        if (!form || !status || !expectedInput || !captchaLabel) return;
+
+        function setCaptcha() {
+          var a = Math.floor(Math.random() * 8) + 2;
+          var b = Math.floor(Math.random() * 8) + 2;
+          expectedInput.value = (a + b);
+          captchaLabel.textContent = 'Ile jest ' + a + ' + ' + b + '?';
+          form.elements['captcha'].value = '';
+        }
+        setCaptcha();
+
         form.addEventListener('submit', function(e) {
           e.preventDefault();
+          status.textContent = '';
+          status.className = 'text-sm';
+
+          if (form.elements['website'].value) {
+            status.textContent = 'Wykryto spam. Formularz nie został wysłany.';
+            status.className = 'text-sm text-red-300';
+            return;
+          }
+
+          if (form.elements['captcha'].value !== expectedInput.value) {
+            status.textContent = 'Niepoprawna odpowiedź weryfikacyjna. Spróbuj ponownie.';
+            status.className = 'text-sm text-red-300';
+            setCaptcha();
+            return;
+          }
+
           var submitBtn = form.querySelector('button[type="submit"]');
           var originalText = submitBtn.textContent;
           submitBtn.disabled = true;
           submitBtn.textContent = 'Wysyłanie...';
-          status.textContent = '';
-          status.className = 'text-sm';
+
+          var data = new FormData(form);
+          data.delete('captcha');
+          data.delete('captcha-expected');
+          data.delete('website');
+
           fetch('https://api.web3forms.com/submit', {
             method: 'POST',
-            body: new FormData(form)
+            body: data
           })
           .then(function(response) { return response.json(); })
-          .then(function(data) {
-            if (data.success) {
+          .then(function(res) {
+            if (res.success) {
               status.textContent = 'Dziękuję za wiadomość. Odezwę się najszybciej jak to możliwe.';
               status.className = 'text-sm text-limebrand';
               form.reset();
+              setCaptcha();
             } else {
               status.textContent = 'Nie udało się wysłać wiadomości. Spróbuj ponownie lub zadzwoń: 501 719 855.';
               status.className = 'text-sm text-red-300';
