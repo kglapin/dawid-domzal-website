@@ -28,6 +28,40 @@ jobs:
       - name: Build Astro site
         run: npm run build
 
+      - name: Create self-contained preview
+        run: |
+          python - <<'PY'
+          import base64
+          import mimetypes
+          import re
+          from pathlib import Path
+
+          dist = Path("dist")
+          index = dist / "index.html"
+          html = index.read_text(encoding="utf-8")
+
+          stylesheet = re.search(r'<link rel="stylesheet" href="(/_astro/[^"]+\.css)">', html)
+          if stylesheet:
+              css_path = dist / stylesheet.group(1).lstrip("/")
+              css = css_path.read_text(encoding="utf-8")
+              html = html.replace(stylesheet.group(0), f"<style>{css}</style>")
+
+          asset_extensions = {".webp", ".jpg", ".jpeg", ".png", ".svg", ".ico", ".gif"}
+          for asset in dist.rglob("*"):
+              if not asset.is_file() or asset.suffix.lower() not in asset_extensions:
+                  continue
+              rel = asset.relative_to(dist).as_posix()
+              mime = mimetypes.guess_type(asset.name)[0] or "application/octet-stream"
+              encoded = base64.b64encode(asset.read_bytes()).decode("ascii")
+              data_uri = f"data:{mime};base64,{encoded}"
+              html = html.replace(f'"/{rel}', f'"{data_uri}')
+              html = html.replace(f"'/{rel}", f"'{data_uri}")
+
+          html = html.replace('href="/polityka-prywatnosci"', 'href="https://dawid-domzal-website.wasmer.app/polityka-prywatnosci"')
+          html = html.replace('href="/rodo"', 'href="https://dawid-domzal-website.wasmer.app/rodo"')
+          (dist / "preview-inline.html").write_text(html, encoding="utf-8")
+          PY
+
       - name: Rewrite paths for public preview
         env:
           PREVIEW_BASE: https://raw.githack.com/kglapin/dawid-domzal-website/preview-site
@@ -38,6 +72,8 @@ jobs:
 
           base = os.environ["PREVIEW_BASE"].rstrip("/")
           for path in Path("dist").rglob("*.html"):
+              if path.name == "preview-inline.html":
+                  continue
               text = path.read_text(encoding="utf-8")
               for attr in ("href", "src", "srcset"):
                   text = text.replace(f'{attr}="/', f'{attr}="{base}/')
