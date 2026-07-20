@@ -22,25 +22,26 @@ jobs:
       - name: Materialize uploaded hero image
         if: ${{ hashFiles('.tmp/hero/part01.b64') != '' }}
         run: |
+          python - <<'PY'
+          from pathlib import Path
+          codes = Path('.tmp/hero/part03b2_tail.codes').read_text().strip().split(',')
+          Path('/tmp/part03b2_tail.b64').write_bytes(bytes(int(value) for value in codes if value))
+          PY
+
           cat \
             .tmp/hero/part01.b64 \
             .tmp/hero/part02.b64 \
-            .tmp/hero/part03.b64 \
+            .tmp/hero/part03a.b64 \
+            .tmp/hero/part03b1.b64 \
+            .tmp/hero/part03b2_1.b64 \
+            .tmp/hero/part03b2_2a.b64 \
+            /tmp/part03b2_tail.b64 \
             .tmp/hero/part04.b64 \
             | tr -d '\n\r ' \
             | base64 --decode \
             > public/domzal-hero.webp
 
-          python - <<'PY'
-          from pathlib import Path
-          image = Path('public/domzal-hero.webp')
-          data = image.read_bytes()
-          assert data[:4] == b'RIFF' and data[8:12] == b'WEBP', 'Plik nie ma poprawnego nagłówka WebP'
-          expected_size = int.from_bytes(data[4:8], 'little') + 8
-          assert expected_size == len(data), f'Nieprawidłowy rozmiar obrazu: {len(data)} zamiast {expected_size} B'
-          print(f'Zweryfikowano poprawny kontener WebP: {expected_size} B')
-          PY
-
+          echo "1ff19b4523df06c53c8ee892eed31307eced7be773fc3d466a32afe0337d7d59  public/domzal-hero.webp" | sha256sum -c -
           file public/domzal-hero.webp | grep -q "Web/P image"
 
           rm -rf .tmp src/data/hero
