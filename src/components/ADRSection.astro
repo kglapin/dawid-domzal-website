@@ -1,0 +1,48 @@
+---
+const adrCourses = [
+  {
+    code: "ADR",
+    title: "Szkolenie podstawowe ADR dla wszystkich klas",
+    description: "Kurs podstawowy dla kierowców wykonujących przewóz towarów niebezpiecznych."
+  },
+  {
+    code: "CYSTERNY",
+    title: "Szkolenie specjalistyczne ADR dla cystern",
+    description: "Kurs specjalistyczny dla kierowców przewożących towary niebezpieczne w cysternach."
+  },
+  {
+    code: "KLASA 1",
+    title: "Materiały i przedmioty wybuchowe",
+    description: "Szkolenie specjalistyczne ADR dla klasy 1."
+  },
+  {
+    code: "KLASA 7",
+    title: "Materiały promieniotwórcze",
+    description: "Szkolenie specjalistyczne ADR dla klasy 7."
+  }
+];
+---
+<section id="adr" class="grain reveal relative overflow-hidden rounded-[2.2rem] bg-geo-900 p-8 text-white md:p-12 lg:p-16">
+  <div class="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-limebrand/18 blur-3xl"></div>
+  <div class="relative z-1 mx-auto grid max-w-7xl gap-10 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)]">
+    <div>
+      <p class="text-sm font-semibold uppercase tracking-[.24em] text-limebrand">Kursy ADR dla kierowców</p>
+      <h2 class="mt-4 max-w-xl text-4xl font-semibold leading-tight tracking-[-0.04em] md:text-5xl">Kursy związane z przewozem towarów niebezpiecznych.</h2>
+      <p class="mt-5 max-w-xl leading-7 text-white/62">Prowadzę szkolenia podstawowe i specjalistyczne ADR dla kierowców. Zakres kursu zależy od rodzaju przewożonych materiałów oraz sposobu ich transportu.</p>
+      <a href="#kontakt" class="mt-8 inline-flex items-center gap-2 rounded-full bg-limebrand px-6 py-3.5 text-sm font-semibold text-geo-900 transition hover:-translate-y-0.5 hover:shadow-soft">
+        Zapytaj o najbliższy kurs ADR
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <div class="grid gap-4 sm:grid-cols-2">
+      {adrCourses.map((course) => (
+        <article class="rounded-[1.5rem] border border-white/10 bg-white/8 p-6 backdrop-blur-sm">
+          <p class="text-xs font-bold uppercase tracking-[.2em] text-limebrand">{course.code}</p>
+          <h3 class="mt-5 text-xl font-semibold">{course.title}</h3>
+          <p class="mt-3 text-sm leading-6 text-white/58">{course.description}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

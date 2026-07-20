@@ -4,8 +4,8 @@
   <div class="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
     <div class="reveal rounded-[2rem] bg-white p-8 shadow-card md:p-12">
       <p class="text-sm font-semibold uppercase tracking-[.24em] text-geo-600">Kontakt</p>
-      <h2 class="mt-4 text-4xl font-semibold leading-tight tracking-[-0.04em] md:text-5xl">Sprawdźmy Twoją działkę w 3 minuty.</h2>
-      <p class="mt-5 leading-7 text-black/58">Zadzwoń lub zostaw numer. W trakcie jednej rozmowy ustalimy wstępny koszt, sprawdzimy Twoją lokalizację i damy Ci jasny plan na start prac.</p>
+      <h2 class="mt-4 text-4xl font-semibold leading-tight tracking-[-0.04em] md:text-5xl">Porozmawiajmy o Twojej działce.</h2>
+      <p class="mt-5 leading-7 text-black/58">Zadzwoń lub zostaw wiadomość. Po krótkiej rozmowie określę wstępny zakres prac, sprawdzę lokalizację i powiem, jakie będą kolejne kroki.</p>
       <div class="mt-8 space-y-3">
         <a href="tel:+48501719855" class="flex items-center justify-between rounded-2xl bg-[#f5f5f0] p-5 transition hover:bg-limebrand">
           <span>
@@ -31,22 +31,29 @@
       </div>
     </div>
 
-    <form class="reveal rounded-[2rem] bg-geo-900 p-8 text-white shadow-card md:p-12">
+    <form name="lead" method="POST" action="mailto:domzal-dawid@wp.pl?subject=Zapytanie%20ze%20strony%20-%20lead" enctype="text/plain" class="reveal rounded-[2rem] bg-geo-900 p-8 text-white shadow-card md:p-12">
       <div class="grid gap-5">
         <label>
           <span class="text-sm text-white/70">Imię i nazwisko</span>
-          <input class="mt-2 w-full rounded-2xl border border-white/10 bg-white/8 px-5 py-4 text-white outline-none focus:border-limebrand" placeholder="Jan Kowalski" />
+          <input name="Imie_i_nazwisko" required class="mt-2 w-full rounded-2xl border border-white/10 bg-white/8 px-5 py-4 text-white outline-none focus:border-limebrand" placeholder="Jan Kowalski" />
         </label>
         <label>
-          <span class="text-sm text-white/70">Telefon lub e-mail</span>
-          <input class="mt-2 w-full rounded-2xl border border-white/10 bg-white/8 px-5 py-4 text-white outline-none focus:border-limebrand" placeholder="np. 500 000 000" />
+          <span class="text-sm text-white/70">Numer telefonu</span>
+          <input type="tel" name="Telefon" required class="mt-2 w-full rounded-2xl border border-white/10 bg-white/8 px-5 py-4 text-white outline-none focus:border-limebrand" placeholder="np. 500 000 000" />
+        </label>
+        <label>
+          <span class="text-sm text-white/70">Adres e-mail</span>
+          <input type="email" name="Email" class="mt-2 w-full rounded-2xl border border-white/10 bg-white/8 px-5 py-4 text-white outline-none focus:border-limebrand" placeholder="np. jan@example.com" />
         </label>
         <label>
           <span class="text-sm text-white/70">Opis</span>
-          <textarea rows="5" class="mt-2 w-full resize-none rounded-2xl border border-white/10 bg-white/8 px-5 py-4 text-white outline-none focus:border-limebrand" placeholder="Napisz, czego dotyczy sprawa i gdzie znajduje się działka."></textarea>
+          <textarea name="Opis" rows="5" class="mt-2 w-full resize-none rounded-2xl border border-white/10 bg-white/8 px-5 py-4 text-white outline-none focus:border-limebrand" placeholder="Napisz, czego dotyczy sprawa i gdzie znajduje się działka."></textarea>
         </label>
-        <button type="button" class="rounded-full bg-limebrand px-7 py-4 text-sm font-semibold text-geo-900 transition hover:-translate-y-0.5">Zamów darmową wycenę i plan</button>
-        <p class="text-xs leading-5 text-white/38">Formularz wizualny - przed wdrożeniem trzeba podłączyć wysyłkę i zgody RODO.</p>
+        <label class="flex items-start gap-3 text-sm text-white/70">
+          <input type="checkbox" name="zgoda_rodo" required class="mt-1 h-4 w-4 accent-limebrand" />
+          <span>Wyrażam zgodę na przetwarzanie danych osobowych zgodnie z <a href="/polityka-prywatnosci" class="text-limebrand underline hover:no-underline">polityką prywatności</a> i RODO.</span>
+        </label>
+        <button type="submit" class="rounded-full bg-limebrand px-7 py-4 text-sm font-semibold text-geo-900 transition hover:-translate-y-0.5">Zapytaj o wstępną wycenę</button>
       </div>
     </form>
   </div>
