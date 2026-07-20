@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -36,3 +36,13 @@ jobs:
           if-no-files-found: error
           include-hidden-files: true
           retention-days: 1
+
+      - name: Publish temporary preview branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: preview-site
+          publish_dir: ./dist
+          force_orphan: true
+          enable_jekyll: true
+          commit_message: Publish preview for ${{ github.sha }}
