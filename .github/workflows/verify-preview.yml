@@ -20,9 +20,16 @@ jobs:
           fetch-depth: 0
 
       - name: Materialize uploaded hero image
-        if: ${{ hashFiles('.tmp/domzal-hero.webp.b64') != '' }}
+        if: ${{ hashFiles('.tmp/hero/part01.b64') != '' }}
         run: |
-          tr -d '\n\r ' < .tmp/domzal-hero.webp.b64 | base64 --decode > public/domzal-hero.webp
+          cat \
+            .tmp/hero/part01.b64 \
+            .tmp/hero/part02.b64 \
+            .tmp/hero/part03.b64 \
+            .tmp/hero/part04.b64 \
+            | tr -d '\n\r ' \
+            | base64 --decode \
+            > public/domzal-hero.webp
 
           python - <<'PY'
           from pathlib import Path
@@ -30,9 +37,8 @@ jobs:
           data = image.read_bytes()
           assert data[:4] == b'RIFF' and data[8:12] == b'WEBP', 'Plik nie ma poprawnego nagłówka WebP'
           expected_size = int.from_bytes(data[4:8], 'little') + 8
-          assert expected_size <= len(data), f'Obraz jest niepełny: {len(data)} z {expected_size} B'
-          image.write_bytes(data[:expected_size])
-          print(f'Zapisano poprawny kontener WebP: {expected_size} B')
+          assert expected_size == len(data), f'Nieprawidłowy rozmiar obrazu: {len(data)} zamiast {expected_size} B'
+          print(f'Zweryfikowano poprawny kontener WebP: {expected_size} B')
           PY
 
           file public/domzal-hero.webp | grep -q "Web/P image"
