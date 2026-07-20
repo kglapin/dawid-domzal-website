@@ -28,6 +28,23 @@ jobs:
       - name: Build Astro site
         run: npm run build
 
+      - name: Rewrite paths for public preview
+        env:
+          PREVIEW_BASE: https://raw.githack.com/kglapin/dawid-domzal-website/preview-site
+        run: |
+          python - <<'PY'
+          import os
+          from pathlib import Path
+
+          base = os.environ["PREVIEW_BASE"].rstrip("/")
+          for path in Path("dist").rglob("*.html"):
+              text = path.read_text(encoding="utf-8")
+              for attr in ("href", "src", "srcset"):
+                  text = text.replace(f'{attr}="/', f'{attr}="{base}/')
+                  text = text.replace(f"{attr}='/", f"{attr}='{base}/")
+              path.write_text(text, encoding="utf-8")
+          PY
+
       - name: Upload static build
         uses: actions/upload-artifact@v4
         with:
