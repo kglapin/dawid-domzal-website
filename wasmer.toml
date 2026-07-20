@@ -1,6 +1,6 @@
 [package]
 name = "kamilglapinskipoczta/dawid-domzal-website"
-version = "0.1.0"
+version = "0.2.0"
 description = "Strona wizytówka Dawid Domżał - usługi geodezyjne Kalisz"
 
 [dependencies]
