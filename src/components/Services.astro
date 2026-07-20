@@ -3,65 +3,65 @@ const geodesyServices = [
   {
     number: "01",
     title: "Mapy do celów projektowych",
-    description: "Mapy w formie analogowej i numerycznej pod budowę obiektów budowlanych, sieci, przyłączy oraz innych elementów zagospodarowania terenu."
+    description: "W formie analogowej i numerycznej — pod budowę obiektów budowlanych, sieci, przyłączy itp."
   },
   {
     number: "02",
     title: "Tyczenia i prace realizacyjne",
-    description: "Tyczenie obiektów budowlanych i liniowych, osi konstrukcyjnych, sieci, przyłączy oraz pozostałych elementów inwestycji zgodnie z dokumentacją projektową."
+    description: "Tyczenia obiektów budowlanych, obiektów liniowych, sieci, przyłączy itp."
   },
   {
     number: "03",
     title: "Geodezyjna obsługa inwestycji",
-    description: "Stała obsługa geodezyjna obiektów kubaturowych — od przygotowania i tyczenia, przez kontrolę realizacji, aż po dokumentację powykonawczą."
+    description: "Obsługa obiektów kubaturowych."
   },
   {
     number: "04",
     title: "Podziały nieruchomości",
-    description: "Kompleksowe przygotowanie i przeprowadzenie procedury podziału działek wraz z wymaganą dokumentacją geodezyjną."
+    description: "Kompleksowe wykonanie prac i dokumentacji związanych z podziałem nieruchomości."
   },
   {
     number: "05",
-    title: "Granice i znaki graniczne",
-    description: "Wznowienia znaków granicznych, wyznaczenia punktów ujawnionych wcześniej w ewidencji gruntów i budynków oraz ustalanie przebiegu granic działek ewidencyjnych."
+    title: "Granice działek ewidencyjnych",
+    description: "Wznowienia znaków granicznych, wyznaczenia punktów granicznych ujawnionych uprzednio w ewidencji gruntów i budynków oraz ustalenie przebiegu granic działek ewidencyjnych."
   },
   {
     number: "06",
     title: "Inwentaryzacje powykonawcze",
-    description: "Pomiary powykonawcze obiektów budowlanych, sieci, przyłączy i innych elementów zagospodarowania terenu potrzebne do zakończenia inwestycji."
+    description: "Inwentaryzacje obiektów budowlanych, sieci, przyłączy i innych obiektów zagospodarowania terenu."
   },
   {
     number: "07",
-    title: "Geodezja inżynieryjna",
-    description: "Specjalistyczne pomiary suwnic, słupów, posadzek, zapór, mostów i innych konstrukcji wymagających precyzyjnej kontroli geometrii."
+    title: "Pomiary związane z geodezją inżynieryjną",
+    description: "Pomiary suwnic, słupów, posadzek, zapór, mostów itp."
   },
   {
     number: "08",
-    title: "Dokumentacja do warunków zabudowy",
-    description: "Przygotowanie materiałów i dokumentacji geodezyjnej niezbędnej do uzyskania decyzji o warunkach zabudowy."
+    title: "Dokumentacja do decyzji o warunkach zabudowy",
+    description: "Przygotowanie dokumentacji niezbędnej do wydania decyzji o warunkach zabudowy."
   }
 ];
 
 const adrCourses = [
   {
     code: "ADR",
-    title: "Szkolenie podstawowe",
-    description: "Kurs podstawowy ADR dla kierowców przewożących towary niebezpieczne wszystkich klas objętych szkoleniem podstawowym."
+    title: "Szkolenie podstawowe ADR dla wszystkich klas",
+    description: "Kurs podstawowy dla kierowców wykonujących przewóz towarów niebezpiecznych."
   },
   {
     code: "CYSTERNY",
-    title: "Szkolenie specjalistyczne",
-    description: "Przygotowanie kierowców do bezpiecznego przewozu towarów niebezpiecznych w cysternach."
+    title: "Szkolenie specjalistyczne ADR dla cystern",
+    description: "Kurs specjalistyczny dla kierowców przewożących towary niebezpieczne w cysternach."
   },
   {
     code: "KLASA 1",
-    title: "Materiały wybuchowe",
-    description: "Szkolenie specjalistyczne dotyczące przewozu materiałów i przedmiotów wybuchowych."
+    title: "Materiały i przedmioty wybuchowe",
+    description: "Szkolenie specjalistyczne ADR dla klasy 1."
   },
   {
     code: "KLASA 7",
     title: "Materiały promieniotwórcze",
-    description: "Szkolenie specjalistyczne dla kierowców przewożących materiały promieniotwórcze."
+    description: "Szkolenie specjalistyczne ADR dla klasy 7."
   }
 ];
 ---
@@ -74,10 +74,10 @@ const adrCourses = [
     <div class="grid gap-10 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)]">
       <div class="reveal lg:sticky lg:top-28 lg:self-start">
         <p class="text-sm font-semibold uppercase tracking-[.24em] text-geo-600">Zakres prac geodezyjnych</p>
-        <h2 class="mt-4 max-w-md text-4xl font-semibold leading-tight tracking-[-0.04em] md:text-5xl">Pełna obsługa geodezyjna inwestycji — od mapy po odbiór.</h2>
-        <p class="mt-5 max-w-md leading-7 text-black/58">Realizujemy zarówno typowe prace dla inwestorów prywatnych, jak i specjalistyczne pomiary dla firm, wykonawców i obiektów przemysłowych. Jeżeli nie masz pewności, czego potrzebujesz, opisz sprawę — dobierzemy właściwy zakres.</p>
+        <h2 class="mt-4 max-w-md text-4xl font-semibold leading-tight tracking-[-0.04em] md:text-5xl">Pełny zakres usług geodezyjnych dla inwestorów, wykonawców i firm.</h2>
+        <p class="mt-5 max-w-md leading-7 text-black/58">Realizujemy prace od przygotowania map i wytyczenia inwestycji, przez obsługę budowy, aż po pomiary powykonawcze i specjalistyczną geodezję inżynieryjną.</p>
         <a href="#kontakt" class="mt-7 inline-flex items-center gap-2 rounded-full bg-geo-900 px-6 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-geo-700">
-          Zapytaj o zakres prac
+          Zapytaj o usługę geodezyjną
           <span aria-hidden="true">→</span>
         </a>
       </div>
@@ -101,10 +101,10 @@ const adrCourses = [
       <div class="relative z-1 grid gap-10 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)]">
         <div>
           <p class="text-sm font-semibold uppercase tracking-[.24em] text-limebrand">Kursy ADR dla kierowców</p>
-          <h2 class="mt-4 max-w-xl text-4xl font-semibold leading-tight tracking-[-0.04em] md:text-5xl">Przygotowanie do bezpiecznego przewozu towarów niebezpiecznych.</h2>
-          <p class="mt-5 max-w-xl leading-7 text-white/62">Prowadzimy szkolenia podstawowe i specjalistyczne ADR. Zakres kursu dobieramy do rodzaju transportu oraz klas materiałów, które kierowca będzie przewoził.</p>
+          <h2 class="mt-4 max-w-xl text-4xl font-semibold leading-tight tracking-[-0.04em] md:text-5xl">Kursy związane z przewozem towarów niebezpiecznych.</h2>
+          <p class="mt-5 max-w-xl leading-7 text-white/62">Prowadzimy szkolenia podstawowe i specjalistyczne ADR dla kierowców. Zakres kursu zależy od rodzaju przewożonych materiałów oraz sposobu ich transportu.</p>
           <a href="#kontakt" class="mt-8 inline-flex items-center gap-2 rounded-full bg-limebrand px-6 py-3.5 text-sm font-semibold text-geo-900 transition hover:-translate-y-0.5 hover:shadow-soft">
-            Zapytaj o najbliższy kurs
+            Zapytaj o najbliższy kurs ADR
             <span aria-hidden="true">→</span>
           </a>
         </div>
