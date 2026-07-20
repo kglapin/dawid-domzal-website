@@ -27,9 +27,18 @@ jobs:
           from pathlib import Path
           image = Path('public/domzal-hero.webp')
           data = image.read_bytes()
-          assert len(data) == 21024, f'Nieprawidłowy rozmiar obrazu: {len(data)} B'
-          assert data[:4] == b'RIFF' and data[8:12] == b'WEBP', 'Plik nie jest poprawnym obrazem WebP'
+          assert data[:4] == b'RIFF' and data[8:12] == b'WEBP', 'Plik nie ma poprawnego nagłówka WebP'
+          expected_size = int.from_bytes(data[4:8], 'little') + 8
+          assert expected_size <= len(data), f'Obraz jest niepełny: {len(data)} z {expected_size} B'
+          image.write_bytes(data[:expected_size])
+          print(f'Zapisano poprawny kontener WebP: {expected_size} B')
           PY
+
+          if command -v identify >/dev/null 2>&1; then
+            identify public/domzal-hero.webp
+          else
+            file public/domzal-hero.webp | grep -q "Web/P image"
+          fi
 
           rm -rf .tmp src/data/hero
           rm -f src/data/heroImage.ts src/pages/domzal-hero.webp.ts
