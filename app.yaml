@@ -2,5 +2,7 @@ name: dawid-domzal-website
 app_id: da_R4qIGtmUVVjW
 owner: kamilglapinskipoczta
 package: .
+capabilities:
+  web_gateway:
+    force_https: true
 kind: wasmer.io/App.v0
-id: kamilglapinskipoczta/dawid-domzal-website
