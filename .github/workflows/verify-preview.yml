@@ -7,13 +7,38 @@ on:
 
 permissions:
   contents: write
+  pull-requests: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout pull request branch
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Materialize uploaded hero image and remove temporary implementation
+        if: ${{ hashFiles('.tmp/hero/part*.b64') != '' }}
+        run: |
+          cat .tmp/hero/part*.b64 | tr -d '\n\r ' | base64 --decode > public/domzal-hero.webp
+          python - <<'PY'
+          from pathlib import Path
+          image = Path('public/domzal-hero.webp')
+          data = image.read_bytes()
+          assert len(data) == 21024, f'Nieprawidłowy rozmiar obrazu: {len(data)} B'
+          assert data[:4] == b'RIFF' and data[8:12] == b'WEBP', 'Plik nie jest poprawnym obrazem WebP'
+          PY
+
+          rm -rf .tmp src/data/hero
+          rm -f src/data/heroImage.ts src/pages/domzal-hero.webp.ts
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Dodaj przesłane zdjęcie hero jako plik WebP"
+          git push origin HEAD:${{ github.head_ref }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -26,6 +51,22 @@ jobs:
 
       - name: Build Astro site
         run: npm run build
+
+      - name: Verify required offer content
+        run: |
+          grep -q "Mapy do celów projektowych" dist/index.html
+          grep -q "Tyczenia i prace realizacyjne" dist/index.html
+          grep -q "Geodezyjna obsługa inwestycji" dist/index.html
+          grep -q "Podziały nieruchomości" dist/index.html
+          grep -q "Granice działek ewidencyjnych" dist/index.html
+          grep -q "Inwentaryzacje powykonawcze" dist/index.html
+          grep -q "Pomiary związane z geodezją inżynieryjną" dist/index.html
+          grep -q "Dokumentacja do decyzji o warunkach zabudowy" dist/index.html
+          grep -q "Szkolenie podstawowe ADR dla wszystkich klas" dist/index.html
+          grep -q "Szkolenie specjalistyczne ADR dla cystern" dist/index.html
+          grep -q "Materiały i przedmioty wybuchowe" dist/index.html
+          grep -q "Materiały promieniotwórcze" dist/index.html
+          test -s dist/domzal-hero.webp
 
       - name: Create standalone preview document
         run: |
