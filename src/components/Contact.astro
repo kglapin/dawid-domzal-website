@@ -1,4 +1,5 @@
 ---
+const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || "YOUR_WEB3FORMS_KEY";
 ---
 <section id="kontakt" class="px-6 py-16 lg:px-14 lg:py-24">
   <div class="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
@@ -31,8 +32,12 @@
       </div>
     </div>
 
-    <form name="lead" method="POST" action="mailto:domzal-dawid@wp.pl?subject=Zapytanie%20ze%20strony%20-%20lead" enctype="text/plain" class="reveal rounded-[2rem] bg-geo-900 p-8 text-white shadow-card md:p-12">
+    <form id="contact-form" class="reveal rounded-[2rem] bg-geo-900 p-8 text-white shadow-card md:p-12" action="https://api.web3forms.com/submit" method="POST">
       <div class="grid gap-5">
+        <input type="hidden" name="access_key" value={accessKey} />
+        <input type="hidden" name="subject" value="Nowe zapytanie ze strony Dawid Domżał" />
+        <input type="hidden" name="from_name" value="Formularz kontaktowy" />
+        <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
         <label>
           <span class="text-sm text-white/70">Imię i nazwisko</span>
           <input name="Imie_i_nazwisko" required class="mt-2 w-full rounded-2xl border border-white/10 bg-white/8 px-5 py-4 text-white outline-none focus:border-limebrand" placeholder="Jan Kowalski" />
@@ -54,7 +59,48 @@
           <span>Wyrażam zgodę na przetwarzanie danych osobowych zgodnie z <a href="/polityka-prywatnosci" class="text-limebrand underline hover:no-underline">polityką prywatności</a> i RODO.</span>
         </label>
         <button type="submit" class="rounded-full bg-limebrand px-7 py-4 text-sm font-semibold text-geo-900 transition hover:-translate-y-0.5">Zapytaj o wstępną wycenę</button>
+        <div id="form-status" class="text-sm"></div>
       </div>
     </form>
+
+    <script is:inline>
+      (function() {
+        var form = document.getElementById('contact-form');
+        var status = document.getElementById('form-status');
+        if (!form || !status) return;
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          var submitBtn = form.querySelector('button[type="submit"]');
+          var originalText = submitBtn.textContent;
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Wysyłanie...';
+          status.textContent = '';
+          status.className = 'text-sm';
+          fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: new FormData(form)
+          })
+          .then(function(response) { return response.json(); })
+          .then(function(data) {
+            if (data.success) {
+              status.textContent = 'Dziękuję za wiadomość. Odezwę się najszybciej jak to możliwe.';
+              status.className = 'text-sm text-limebrand';
+              form.reset();
+            } else {
+              status.textContent = 'Nie udało się wysłać wiadomości. Spróbuj ponownie lub zadzwoń: 501 719 855.';
+              status.className = 'text-sm text-red-300';
+            }
+          })
+          .catch(function() {
+            status.textContent = 'Błąd połączenia. Zadzwoń: 501 719 855.';
+            status.className = 'text-sm text-red-300';
+          })
+          .finally(function() {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+          });
+        });
+      })();
+    </script>
   </div>
 </section>
