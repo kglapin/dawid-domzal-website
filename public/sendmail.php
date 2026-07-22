@@ -1,4 +1,11 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'phpmailer/PHPMailer.php';
+require 'phpmailer/SMTP.php';
+require 'phpmailer/Exception.php';
+
 header('Content-Type: application/json; charset=utf-8');
 
 $response = ['success' => false, 'message' => 'Nieznany błąd.'];
@@ -9,14 +16,14 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// Honeypot: pole "website" musi być puste
+// Honeypot
 if (!empty($_POST['website'] ?? '')) {
     $response['message'] = 'Wykryto spam.';
     echo json_encode($response);
     exit;
 }
 
-// Captcha matematyczna
+// Captcha
 $captcha = trim($_POST['captcha'] ?? '');
 $expected = trim($_POST['captcha-expected'] ?? '');
 if ($captcha === '' || $captcha !== $expected) {
@@ -25,7 +32,7 @@ if ($captcha === '' || $captcha !== $expected) {
     exit;
 }
 
-// RODO zgoda
+// RODO
 if (empty($_POST['zgoda_rodo'])) {
     $response['message'] = 'Wymagana zgoda na przetwarzanie danych.';
     echo json_encode($response);
@@ -50,29 +57,37 @@ if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
-$to = 'domzal-dawid@wp.pl';
-$subject = 'Nowe zapytanie ze strony adrgeo.pl';
-$body = "Imię i nazwisko: $name\n";
-$body .= "Telefon: $phone\n";
-$body .= "E-mail: $email\n\n";
-$body .= "Opis:\n$message\n\n";
-$body .= "Zgoda RODO: tak";
+$mail = new PHPMailer(true);
 
-$replyTo = $email !== '' ? $email : 'kontakt@adrgeo.pl';
-$from = 'formularz@adrgeo.pl';
+try {
+    $mail->isSMTP();
+    $mail->Host = 'smtp.zenbox.pl';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'noreply@adrgeo.pl';
+    $mail->Password = '91@gKc#yUpCa';
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = 587;
+    $mail->CharSet = 'UTF-8';
 
-$headers = "MIME-Version: 1.0\r\n";
-$headers .= "Content-type: text/plain; charset=UTF-8\r\n";
-$headers .= "From: $from\r\n";
-$headers .= "Reply-To: $replyTo\r\n";
-$headers .= "X-Mailer: PHP/" . phpversion();
+    $mail->setFrom('noreply@adrgeo.pl', 'Formularz adrgeo.pl');
+    $mail->addAddress('domzal-dawid@wp.pl');
+    if ($email !== '') {
+        $mail->addReplyTo($email, $name);
+    }
 
-$subjectEncoded = '=?UTF-8?B?' . base64_encode($subject) . '?=';
+    $mail->isHTML(false);
+    $mail->Subject = 'Nowe zapytanie ze strony adrgeo.pl';
+    $mail->Body = "Imię i nazwisko: $name\n"
+                . "Telefon: $phone\n"
+                . "E-mail: $email\n\n"
+                . "Opis:\n$message\n\n"
+                . "Zgoda RODO: tak";
 
-if (mail($to, $subjectEncoded, $body, $headers)) {
+    $mail->send();
     $response = ['success' => true, 'message' => 'Dziękuję za wiadomość. Odezwę się najszybciej jak to możliwe.'];
-} else {
+} catch (Exception $e) {
     $response['message'] = 'Nie udało się wysłać wiadomości. Spróbuj ponownie lub zadzwoń: 501 719 855.';
+    // $response['debug'] = $mail->ErrorInfo; // odkomentuj do diagnostyki
 }
 
 echo json_encode($response);
